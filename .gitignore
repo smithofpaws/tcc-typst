@@ -3,3 +3,7 @@ typst.exe
 
 # Arquivos gerados
 *.pdf
+
+# Arquivos de agentes IA
+AGENTS.md
+CLAUDE.md

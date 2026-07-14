@@ -40,11 +40,21 @@
   set par(
     justify: true,
     first-line-indent: 1.25cm,
-    leading: 0.52em,
+    leading: 1em,
   )
   
-  // --- REGRA DO ET AL. EM ITÁLICO ---
-  show "et al.": emph
+// --- REGRA DO ET AL. EM ITÁLICO (Geral, Citações e Bibliografia) ---
+  show regex("et\\s+al\\."): emph
+
+  show cite: it => {
+    show regex("et\\s+al\\."): emph
+    it
+  }
+  
+  show bibliography: it => {
+    show regex("et\\s+al\\."): emph
+    it
+  }
   
   set enum(
     numbering: "a)",
@@ -58,7 +68,7 @@
 
   // --- CONFIGURAÇÃO DE EQUAÇÕES ---
   set math.equation(numbering: "(1)")
-  show math.equation.where(block: true): set block(above: 0.975em, below: 0.975em)
+  show math.equation.where(block: true): set block(above: 1em, below: 1em)
   
   show math.equation.where(block: true): it => {
     it
@@ -68,7 +78,7 @@
 
   // --- REGRA PARA TÍTULO DA FIGURA NA PARTE SUPERIOR ---
 let espaco-simples = 0.65em
-let espaco-linha-e-meia = 0.975em
+let espaco-linha-e-meia = 1em
 
 // --- REGRA PARA TÍTULO DA FIGURA/TABELA NA PARTE SUPERIOR ---
 set figure.caption(separator: [ -- ])
@@ -129,10 +139,10 @@ show figure.where(kind: image): it => {
     #v(2cm)
     #align(right)[
       #block(width: 50%, align(left)[
-        #set par(leading: 0.26em, first-line-indent: 0pt)
+        #set par(leading: 0.65em, first-line-indent: 0pt)
         #set text(weight: "regular", size: 12pt)
         #natureza
-        #v(0.975em)
+        #v(1em)
         Orientador(a): #orientador
         #if coorientador != "" [\ Coorientador(a): #coorientador]
       ])
@@ -176,7 +186,7 @@ show figure.where(kind: image): it => {
     #v(1cm)
     #align(right)[
       #block(width: 50%, align(left)[
-        #set par(leading: 0.26em, first-line-indent: 0pt)
+        #set par(leading: 0.65em, first-line-indent: 0pt)
         #set text(weight: "regular", size: 12pt)
         #natureza
         #if area_concentracao != "" [
@@ -310,10 +320,10 @@ show figure.where(kind: image): it => {
   if lista_siglas.len() > 0 {
     align(center)[#text(weight: "bold")[LISTA DE SIGLAS]]
     v(1cm)
-    set par(first-line-indent: 0pt, leading: 0.975em)
+    set par(first-line-indent: 0pt, leading: 1em)
     grid(
       columns: (2.5cm, 1fr),
-      row-gutter: 0.975em,
+      row-gutter: 1em,
       ..lista_siglas.flatten()
     )
     pagebreak()
@@ -323,10 +333,10 @@ show figure.where(kind: image): it => {
   if lista_simbolos.len() > 0 {
     align(center)[#text(weight: "bold")[LISTA DE SÍMBOLOS]]
     v(1cm)
-    set par(first-line-indent: 0pt, leading: 0.975em)
+    set par(first-line-indent: 0pt, leading: 1em)
     grid(
       columns: (2.5cm, 1fr),
-      row-gutter: 0.975em,
+      row-gutter: 1em,
       ..lista_simbolos.flatten()
     )
     pagebreak()
@@ -363,7 +373,7 @@ show figure.where(kind: image): it => {
     block(
       width: 100%,
       above: 1.3em,
-      below: 0.975em,
+      below: 1em,
       {
         set text(weight: "bold", size: 12pt)
         if it.level == 1 {
