@@ -19,6 +19,7 @@
   palavras_chave: (),
   abstract: none,
   keywords: (),
+  lista_abreviaturas: (),
   lista_siglas: (),
   lista_simbolos: (),
   body,
@@ -314,6 +315,19 @@ show figure.where(kind: image): it => {
       }
       pagebreak()
     }
+  }
+
+  // --- LISTA DE ABREVIATURAS ---
+  if lista_abreviaturas.len() > 0 {
+    align(center)[#text(weight: "bold")[LISTA DE ABREVIATURAS]]
+    v(1cm)
+    set par(first-line-indent: 0pt, leading: 1em)
+    grid(
+      columns: (2.5cm, 1fr),
+      row-gutter: 1em,
+      ..lista_abreviaturas.flatten()
+    )
+    pagebreak()
   }
 
   // --- LISTA DE SIGLAS ---
