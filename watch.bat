@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 echo ========================================================
 echo Iniciando a compilacao automatica (watch mode) do Typst
 echo ========================================================
@@ -7,6 +8,6 @@ echo O Typst esta monitorando o arquivo main.typ...
 echo Deixe esta janela aberta. Para parar, pressione Ctrl+C.
 echo.
 
-typst.exe watch main.typ
+"%~dp0typst.exe" watch main.typ
 
 pause
