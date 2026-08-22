@@ -4,7 +4,11 @@ Template em [Typst](https://typst.app/) para formatação de Trabalhos de Conclu
 
 ## Download
 
-Baixe o arquivo `.zip` da última versão na aba [Releases](https://github.com/smithofpaws/tcc-typst/releases). O zip contém todos os arquivos necessários para começar a escrever seu TCC.
+Clique em **Code → Download ZIP** na [página do repositório](https://github.com/smithofpaws/tcc-typst),
+ou clone com `git clone https://github.com/smithofpaws/tcc-typst.git`.
+
+O pacote já vem com o compilador `typst.exe` incluído: extraia, execute o
+`watch.bat` e comece a escrever. Não é preciso instalar nada.
 
 ## Estrutura de Arquivos
 
