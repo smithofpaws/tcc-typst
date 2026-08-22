@@ -15,16 +15,24 @@ Baixe o arquivo `.zip` da última versão na aba [Releases](https://github.com/s
 | `abnt-unipampa-nbr6023-2025.csl` | Estilo CSL para referências bibliográficas conforme NBR 6023:2025 |
 | `referencias.bib` | Arquivo BibTeX para suas referências bibliográficas |
 | `watch.bat` | Script para compilação automática com `typst watch` |
+| `typst.exe` | Compilador Typst 0.15.1 para Windows (x86-64) — já incluído, não precisa instalar nada |
+| `typst-LICENSE`, `typst-NOTICE` | Licença Apache 2.0 do Typst (obrigatória por acompanhar o binário) |
 
 ## Como Usar
 
-1. Baixe e instale o [Typst](https://github.com/typst/typst/releases) ou utilize o [editor online](https://typst.app/).
-2. Edite o `main.typ` com o conteúdo do seu TCC.
-3. Adicione suas referências em `referencias.bib`.
-4. Para compilar localmente, execute `watch.bat` ou use o comando:
-   ```
-   typst watch main.typ
-   ```
+1. Edite o `main.typ` com o conteúdo do seu TCC.
+2. Adicione suas referências em `referencias.bib`.
+3. Execute o `watch.bat` — ele usa o `typst.exe` que já vem junto e recompila
+   o PDF automaticamente a cada vez que você salva o arquivo.
+
+> **Windows:** o `typst.exe` incluído é o compilador para Windows 64 bits, então
+> não é preciso instalar nada.
+>
+> **Linux/macOS:** o `.exe` não funciona no seu sistema. Baixe o Typst para a sua
+> plataforma em [typst/typst/releases](https://github.com/typst/typst/releases)
+> (ou via `brew install typst` / gerenciador de pacotes) e compile com
+> `typst watch main.typ`. Alternativa sem instalar nada: o
+> [editor online](https://typst.app/).
 
 ## Normas Aplicadas
 
