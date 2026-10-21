@@ -1,4 +1,4 @@
-#import "unipampa.typ": unipampa, citacao_longa, titulo_sem_numeracao
+#import "unipampa.typ": unipampa, citacao_longa, titulo_sem_numeracao, fonte, nota, quadro, glossario, apendices, anexos, apud
 
 // Preencha todos os dados pré-textuais aqui
 #show: doc => unipampa(
@@ -6,26 +6,41 @@
   subtitulo: "SUBTÍTULO (se houver)",
   autor: "NOME DO AUTOR",
   curso: "CURSO DE (NOME DO CURSO)",
+  // campus: "Campus (Nome do Campus)", // Opcional, abaixo do nome da universidade na capa
+  // logo: "figuras/logo-unipampa.png", // Opcional, no topo da capa
   orientador: "Prof. Dr. Nome do Orientador",
   coorientador: "Prof. Dr. Nome do Coorientador", // Opcional
   local: "Cidade",
   ano: "Ano",
   natureza: "Trabalho de Conclusão de Curso apresentado ao Curso de (Nome do Curso) da Universidade Federal do Pampa, como requisito parcial para obtenção do Título de Bacharel em (Área do curso).",
   area_concentracao: "Nome da Área",
+  // linha_pesquisa: "Nome da linha", // Opcional, na folha de rosto
   data_defesa: "dia, mês e ano",
-  
-  // Membros da banca além do orientador (o orientador já entra automaticamente na primeira linha da banca)
+
+  // Membros da banca, na ordem em que aparecem. O primeiro recebe a função
+  // "Orientador"; use `funcao` para indicar outra (ex.: Coorientador).
   banca: (
-    (nome: "Prof. (titulação). (Nome do Orientador) - Orientador", instituicao: "(sigla da instituição)"),
+    (nome: "Prof. (titulação). (Nome do Orientador)", instituicao: "(sigla da instituição)"),
     (nome: "Prof. (titulação). (Nome do membro da banca)", instituicao: "(sigla da instituição)"),
     (nome: "Prof. (titulação). (Nome do membro da banca)", instituicao: "(sigla da instituição)"),
   ),
+
+  // Ficha catalográfica gerada no Sistema GURI. Enquanto o arquivo não for
+  // informado, o template reserva a página. A ficha não conta na paginação.
+  // ficha_catalografica: "documentos/ficha-catalografica.pdf",
+
+  // Para o depósito final, substitua a folha de aprovação pela página assinada.
+  // folha_aprovacao: "documentos/folha-aprovacao-assinada.pdf",
+
+  // Impressão em frente e verso: margens espelhadas e número da página no
+  // canto externo.
+  // frente_verso: true,
 
   // Elementos pré-textuais opcionais (coloque `none` para omitir a página)
   dedicatoria: [
     Dedico este trabalho ...... (a dedicatória é opcional).
   ],
-  
+
   agradecimento: [
     Ao Prof. Dr. ..... \
     Aos professores... \
@@ -63,11 +78,8 @@
   doc
 )
 
-// Listas de Figuras, Tabelas, Abreviaturas e Siglas devem ser inseridas manualmente antes da introdução se existirem.
-// Exemplo:
-// #titulo_sem_numeracao("LISTA DE FIGURAS")
-// Figura 1 - Fotografia da sala de aula ...................... 11
-// #pagebreak()
+// As listas de figuras, quadros, tabelas, abreviaturas, siglas e símbolos são
+// geradas automaticamente antes do sumário quando houver itens.
 
 
 = INTRODUÇÃO
@@ -76,17 +88,19 @@ Na introdução do trabalho deve constar a definição do tema em linhas gerais,
 
 Para normatização dos trabalhos acadêmicos da UNIPAMPA, fica definido que, quanto ao tipo de fonte, deverá ser utilizada a fonte Arial ou Times New Roman, onde todo o trabalho deverá ser apresentado sempre com a mesma fonte escolhida, no tamanho 12 e 10 para citações longas (mais de três linhas), notas, fontes das ilustrações e das tabelas, paginação, ficha catalográfica, legendas e outras notas.
 
-As margens devem ser 3cm (superior e esquerda) e 2cm (inferior e direita) no anverso das folhas. O texto do trabalho deve ser digitado com espaço entre as linhas de 1,5 (um e meio). 
+As margens devem ser 3cm (superior e esquerda) e 2cm (inferior e direita) no anverso das folhas. O texto do trabalho deve ser digitado com espaço entre as linhas de 1,5 (um e meio).
 
 = CONCEITOS GERAIS E REVISÃO DE LITERATURA
 
-O desenvolvimento do trabalho é a revisão de literatura ou referencial teórico, sendo a parte mais importante do trabalho, por isso exige-se organização, objetividade e clareza. 
+O desenvolvimento do trabalho é a revisão de literatura ou referencial teórico, sendo a parte mais importante do trabalho, por isso exige-se organização, objetividade e clareza.
 
 == Revisão de literatura
 
-Na revisão de literatura deve-se ler o que já foi publicado sobre o assunto, refere-se ao levantamento do tema pesquisado. 
+Na revisão de literatura deve-se ler o que já foi publicado sobre o assunto, refere-se ao levantamento do tema pesquisado.
 
 Uma citação indireta pode ser inserida mencionando a obra de forma fluida no texto, como por exemplo os conceitos abordados por #cite(<bailona2006>, form: "prose"). E, quando o autor não faz parte da sentença, a citação aparece entre parênteses no final da ideia @alves2000.
+
+Somente as obras citadas no texto aparecem nas referências. Para que todos os exemplos do arquivo `referencias.bib` apareçam, esta frase cita cada um deles. Estudos diversos abrangem áreas como literatura @alves2000, engenharia e tubulações @bailona2006, legislação federal @brasil1988 @brasil2024, assessoria educacional @cassol2003, avaliação de revestimentos @courtes2018, auditoria bancária @dantas2014, jornalismo digital @ferreira2003, metodologia da pesquisa @gil2022 @ruiz2008, teorias da personalidade @hall2000, redes de computadores @jonack2006, economia e globalização @lacerda1998 @mariano2005, métodos educacionais @capitulo2024, tecnologias no ensino @artigo2025, pós-graduação @dissertacao2023, automação acadêmica @evento2024, normas técnicas @abnt14724 @unipampa2025manual, biblioteconomia @silva2012, serviço social @simoes2009 e softwares de apoio @software2026.
 
 Quando for utilizar uma cópia literal do texto, a mesma deve seguir as regras para citações. Nas citações deve sempre aparecer o autor (Sobrenome), o ano, e, se houver, o número da página. Para citações com mais de três linhas, estas devem ser recuadas:
 
@@ -96,16 +110,21 @@ Quando for utilizar uma cópia literal do texto, a mesma deve seguir as regras p
 
 As citações são menções de informações retiradas de outras fontes, e servem para dar embasamento teórico.
 
+A citação de citação deve ser utilizada somente quando o documento original não puder ser consultado, e apenas a obra consultada entra nas referências #apud("Lacerda", "1998", <mariano2005>, pagina: "p. 89").
+
+Notas explicativas devem ser utilizadas com moderação e não podem interromper a sequência lógica do texto.#footnote[Exemplo de nota explicativa em fonte 10, espaço simples e alinhamento abaixo da primeira letra da nota, a partir da segunda linha.]
+
 === Subseção nível 3 (Exemplo)
 
 Pode ser dividida de acordo com a abordagem.
 
-Abaixo temos um exemplo de como inserir uma figura no Typst. A inserção de figuras com legenda fará com que a *Lista de Figuras* seja gerada automaticamente nos elementos pré-textuais.
+Abaixo temos um exemplo de como inserir uma figura no Typst. A inserção de figuras com legenda fará com que a *Lista de Figuras* seja gerada automaticamente nos elementos pré-textuais. A fonte é indicada logo abaixo com `#fonte`.
 
 #figure(
   rect(width: 50%, height: 3cm, fill: rgb("eee"))[Figura de Exemplo],
   caption: [Modelo de ilustrações],
 )
+#fonte[elaboração própria]
 
 Abaixo temos um exemplo de como inserir uma tabela. Como ela está dentro de um bloco `#figure` e foi informada como `kind: table`, a *Lista de Tabelas* também será gerada de forma automática!
 
@@ -123,6 +142,22 @@ Abaixo temos um exemplo de como inserir uma tabela. Como ela está dentro de um 
   caption: [Pessoas residentes em domicílios particulares],
   kind: table
 )
+#fonte[IBGE (2010)]
+#nota[dados apresentados apenas para demonstrar a formatação]
+
+Quadros reúnem informações textuais e são inseridos com `#quadro`, o que gera a *Lista de Quadros*.
+
+#quadro(
+  table(
+    columns: (auto, 1fr),
+    inset: 8pt,
+    table.header([*Elemento*], [*Condição*]),
+    [Resumo], [Obrigatório],
+    [Glossário], [Opcional],
+  ),
+  caption: [Exemplo de quadro],
+)
+#fonte[elaboração própria]
 
 = METODOLOGIA
 
@@ -142,13 +177,34 @@ A conclusão ou considerações finais é a parte final do texto, o fechamento d
 
 // As referências são geradas automaticamente baseadas no arquivo referencias.bib
 // A opção de estilo aplica a formatação da ABNT via o arquivo CSL da Unipampa (NBR 6023:2025).
-#set par(leading: 0.4em, first-line-indent: 0pt, spacing: 1.5em)
-#bibliography("referencias.bib", style: "abnt-unipampa-nbr6023-2025.csl", title: "REFERÊNCIAS")
+// O espaçamento entre linhas vale só para as referências, por isso fica entre #[ ].
+#[
+  #set par(leading: 0.4em, first-line-indent: 0pt, spacing: 1.5em)
+  #bibliography("referencias.bib", style: "abnt-unipampa-nbr6023-2025.csl", title: "REFERÊNCIAS")
+]
 
-= APÊNDICES
+// Elemento opcional. Termos em ordem alfabética.
+#glossario(
+  ("Compilador", "Programa responsável por transformar o código-fonte em um documento final."),
+  ("Template", "Estrutura previamente configurada para padronizar um documento."),
+  ("Typst", "Sistema de composição de documentos baseado em marcação."),
+)
 
-Elemento opcional. Colocado após o glossário e constituído de informações elaboradas pelo autor do trabalho, não incluídas no texto. 
+// Elemento opcional: material elaborado pelo autor. Cada título `=` abaixo
+// sai como "APÊNDICE A -- TÍTULO", em página própria.
+#show: apendices
 
-= ANEXOS
+= INSTRUMENTO DE COLETA DE DADOS
 
-Elemento opcional. Colocado após os apêndices e constituído de informações não elaboradas pelo autor do trabalho, que serve de fundamentação, comprovação e ilustração.
+Inclua aqui questionários, roteiros, códigos, formulários ou outros materiais elaborados pelo próprio autor e que sejam necessários à compreensão do trabalho.
+
+= EXEMPLO COMPLEMENTAR
+
+Segundo apêndice de demonstração.
+
+// Elemento opcional: material não elaborado pelo autor.
+#show: anexos
+
+= DOCUMENTO COMPLEMENTAR
+
+Inclua aqui documentos de terceiros utilizados para fundamentação, comprovação ou ilustração.

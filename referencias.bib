@@ -1,17 +1,328 @@
+% EXEMPLOS PARA DEMONSTRAÇÃO DE FORMATAÇÃO
+% Exemplos adaptados do template LaTeX V2 da UNIPAMPA (Charles Quevedo Carpes, 2026),
+% seguindo o Manual de normalização de referências da UNIPAMPA (2025).
+% Os dados servem apenas de modelo e não foram conferidos nas obras originais.
+% Não cite estes registros em trabalhos reais sem verificar os documentos.
+%
+% ORIENTAÇÕES PARA O TYPST
+%
+% - Somente as obras citadas no texto aparecem nas referências.
+% - Separe autores com "and". O Typst não reconhece "and others": para gerar
+%   o et al., informe todos os autores (o estilo abrevia a partir de quatro).
+% - Subtítulo: use o campo note. O estilo imprime "Título: subtítulo" e
+%   destaca somente o título. Não use note para outras informações.
+% - Data de acesso: use urldate no formato AAAA-MM-DD.
+% - Datas com dia e mês: use date = {AAAA-MM-DD} ou {AAAA-MM}. Intervalos de
+%   meses (jan./abr.) não são suportados; informe apenas o ano nesses casos.
+% - Sem local de publicação: omita address; o estilo imprime [S. l.].
+%   Sem editora: omita publisher; o estilo imprime [s. n.].
+% - Instituição de TCC, dissertação e tese: use school ou institution.
+% - Caracteres especiais: escreva \& para o "e comercial".
+
+% LIVRO CONSULTADO ONLINE, SEM LOCAL DE PUBLICAÇÃO IDENTIFICADO.
+
 @book{alves2000,
-  author = {Alves, Castro},
-  title = {Navio negreiro},
-  address = {[S. l.]},
+  author    = {Alves, Castro},
+  title     = {Navio negreiro},
   publisher = {Virtual Books},
-  year = {2000},
-  url = {http://www.terra.com.br},
-  urldate = {2002-01-10}
+  year      = {2000},
+  url       = {http://www.terra.com.br/virtualbooks/freebook/port/Lport2/navionegreiro.htm},
+  urldate   = {2002-01-10}
 }
 
+% NORMA TÉCNICA, COM AUTORIA INSTITUCIONAL.
+% As chaves duplas em author mantêm o nome da entidade como uma unidade.
+
+@manual{abnt14724,
+  author    = {{Associação Brasileira de Normas Técnicas}},
+  title     = {NBR 14724},
+  note      = {informação e documentação: trabalhos acadêmicos: apresentação},
+  address   = {Rio de Janeiro},
+  publisher = {ABNT},
+  year      = {2024}
+}
+
+% LIVRO COM QUATRO OU MAIS AUTORES, REPRESENTADOS PELO PRIMEIRO E ET AL.
+% Os coautores após o primeiro são fictícios: servem apenas para acionar o et al.
+
 @book{bailona2006,
-  author = {Bailona, Baltazar Agenor and Silva, J. and Costa, M. and Pereira, R.},
-  title = {Análise de tensões em tubulações industriais: para engenheiros e projetistas},
-  address = {Rio de Janeiro},
+  author    = {Bailona, Baltazar Agenor and Silva, J. and Costa, M. and Pereira, R.},
+  title     = {Análise de tensões em tubulações industriais},
+  note      = {para engenheiros e projetistas},
+  address   = {Rio de Janeiro},
   publisher = {LTC},
-  year = {2006}
+  year      = {2006}
+}
+
+% LEGISLAÇÃO PUBLICADA NO DIÁRIO OFICIAL.
+% Use article: journaltitle recebe o diário oficial, que é o elemento destacado.
+
+@article{brasil1988,
+  author       = {Brasil},
+  title        = {Decreto-lei nº 2.481, de 3 de outubro de 1988},
+  journaltitle = {Diário Oficial [da] República Federativa do Brasil},
+  location     = {Brasília, DF},
+  volume       = {126},
+  number       = {190},
+  pages        = {19291--19292},
+  date         = {1988-10-04}
+}
+
+% LEGISLAÇÃO CONSULTADA EM PORTAL OFICIAL.
+% A ementa vai em note. Substitua a URL pela página específica da lei.
+
+@misc{brasil2024,
+  author    = {Brasil},
+  title     = {Lei nº 14.874, de 28 de maio de 2024},
+  note      = {Dispõe sobre a pesquisa com seres humanos e institui o Sistema Nacional de Ética em Pesquisa com Seres Humanos},
+  address   = {Brasília, DF},
+  publisher = {Presidência da República},
+  year      = {2024},
+  url       = {https://www.planalto.gov.br/},
+  urldate   = {2026-07-10}
+}
+
+% CAPÍTULO DE LIVRO COM AUTOR PRÓPRIO, EM OBRA ORGANIZADA.
+% author/title identificam o capítulo; editor/booktitle, o livro.
+% O campo editor sai como (org.), a forma usual para organizador.
+% O Typst não reconhece editortype.
+% Limitação: o subtítulo do livro (dentro de booktitle) sai em negrito.
+
+@incollection{cassol2003,
+  author    = {Cassol, Glória Barbosa},
+  title     = {Assessoria no Centro de Educação da UFSM: uma atividade dispensável?},
+  editor    = {Silveira, Ada Cristina Machado da},
+  booktitle = {Práticas, identidade e memória: 30 anos de Relações Públicas na UFSM},
+  address   = {Santa Maria},
+  publisher = {FACOS-UFSM},
+  year      = {2003},
+  pages     = {183--190}
+}
+
+% TRABALHO EM ANAIS DE EVENTO CONSULTADOS ONLINE.
+% eventtitle, number, eventdate e venue identificam o evento;
+% booktitle, address, publisher e year identificam os anais. A URL é fictícia.
+
+@inproceedings{evento2024,
+  author     = {Costa, Rafael and Martins, Luiza},
+  title      = {Automação de processos acadêmicos com software livre},
+  eventtitle = {Congresso Brasileiro de Informática na Educação},
+  number     = {35},
+  eventdate  = {2024},
+  venue      = {Brasília},
+  booktitle  = {Anais [...]},
+  address    = {Brasília, DF},
+  publisher  = {Sociedade Brasileira de Computação},
+  year       = {2024},
+  pages      = {210--219},
+  url        = {https://example.org/anais},
+  urldate    = {2026-07-10}
+}
+
+% TRABALHO DE CONCLUSÃO DE CURSO (TCC) DISPONÍVEL EM REPOSITÓRIO ONLINE.
+% type recebe tipo, grau e curso; institution, a instituição e o campus;
+% pagetotal, o número de folhas.
+
+@thesis{courtes2018,
+  author      = {Courtes, Rafael Alves},
+  title       = {Avaliação do comportamento dos revestimentos de carbeto de tungstênio e carbeto de cromo via HVOF frente à fadiga térmica},
+  type        = {Trabalho de Conclusão de Curso (Graduação em Engenharia Mecânica)},
+  institution = {Universidade Federal do Pampa, Campus Alegrete},
+  address     = {Alegrete},
+  year        = {2018},
+  pagetotal   = {61},
+  url         = {http://dspace.unipampa.edu.br:8080/bitstream/riu/3713/1/Rafael%20Alves%20Courte%20s%20-%202018.pdf},
+  urldate     = {2019-02-26}
+}
+
+% ARTIGO DE PERIÓDICO ONLINE COM DOI.
+% doi contém somente o identificador. Os coautores após o primeiro são fictícios.
+
+@article{dantas2014,
+  author       = {Dantas, José Alves and Medeiros, A. and Galdino, B. and Costa, C.},
+  title        = {Regulação da auditoria em sistemas bancários: análise do cenário internacional e fatores determinantes},
+  journaltitle = {Revista Contabilidade \& Finanças},
+  location     = {São Paulo},
+  volume       = {25},
+  number       = {64},
+  pages        = {7--18},
+  year         = {2014},
+  doi          = {10.1590/S1519-70772014000100002},
+  url          = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S151970772014000100002&lng=en&nrm=iso},
+  urldate      = {2014-05-20}
+}
+
+% SOFTWARE DISPONÍVEL ONLINE.
+% Se precisar indicar a versão, inclua-a no título.
+
+@software{software2026,
+  author  = {{Equipe do Projeto}},
+  title   = {Nome do software},
+  year    = {2026},
+  url     = {https://example.org/software},
+  urldate = {2026-07-10}
+}
+
+% ARTIGO DE PERIÓDICO SEM DOI E SEM ACESSO ONLINE.
+
+@article{ferreira2003,
+  author       = {Ferreira, Paulo Henrique de Oliveira},
+  title        = {O jornalismo on line},
+  journaltitle = {Revista de Estudos de Jornalismo},
+  location     = {Campinas},
+  volume       = {6},
+  number       = {1},
+  pages        = {65--77},
+  year         = {2003}
+}
+
+% LIVRO DE UM AUTOR, COM NÚMERO DE EDIÇÃO.
+% edition recebe apenas o número (o estilo acrescenta "ed.").
+
+@book{gil2022,
+  author    = {Gil, Antonio Carlos},
+  title     = {Como elaborar projetos de pesquisa},
+  edition   = {7},
+  address   = {São Paulo},
+  publisher = {Atlas},
+  year      = {2022}
+}
+
+% LIVRO COM TRÊS AUTORES: até três, todos são informados.
+
+@book{hall2000,
+  author    = {Hall, Calvin S. and Lindzey, Gardner and Campbell, John B.},
+  title     = {Teorias da personalidade},
+  edition   = {4},
+  address   = {Porto Alegre},
+  publisher = {Artmed},
+  year      = {2000}
+}
+
+% TRABALHO EM ANAIS DE EVENTO, SEM URL.
+
+@inproceedings{jonack2006,
+  author     = {Jonack, Marco Antonio and Murta, Cristina Duarte},
+  title      = {Limite de capacidade e proteção se servidores em redes gigabit},
+  eventtitle = {Simpósio Brasileiro de Redes de Computadores},
+  eventdate  = {2006},
+  venue      = {Curitiba},
+  booktitle  = {Anais [...]},
+  address    = {Curitiba},
+  publisher  = {Sociedade Brasileira de Computação},
+  year       = {2006},
+  pages      = {179--194}
+}
+
+% LIVRO DE UM AUTOR, SEM EDIÇÃO: autor, título, local, editora e ano.
+
+@book{lacerda1998,
+  author    = {Lacerda, Antonio Corrêa de},
+  title     = {O impacto da globalização na economia brasileira},
+  address   = {São Paulo},
+  publisher = {Contexto},
+  year      = {1998}
+}
+
+@book{mariano2005,
+  author    = {Mariano, Jefferson},
+  title     = {Introdução à economia brasileira},
+  address   = {São Paulo},
+  publisher = {Saraiva},
+  year      = {2005}
+}
+
+% ARTIGO ONLINE COM DOI, COM DADOS FICTÍCIOS (não reutilize este DOI).
+
+@article{artigo2025,
+  author       = {Mendes, Carla and Ribeiro, Paulo},
+  title        = {Tecnologias digitais no ensino superior},
+  journaltitle = {Revista Brasileira de Educação},
+  location     = {Rio de Janeiro},
+  volume       = {30},
+  number       = {1},
+  pages        = {1--18},
+  year         = {2025},
+  doi          = {10.0000/exemplo.2025.001},
+  url          = {https://example.org/artigo},
+  urldate      = {2026-07-10}
+}
+
+% DISSERTAÇÃO DE MESTRADO, SEM ACESSO ONLINE.
+% Informe a descrição completa do trabalho em type.
+
+@mastersthesis{dissertacao2023,
+  author    = {Oliveira, Marina},
+  title     = {Formação docente e recursos digitais},
+  type      = {Dissertação (Mestrado em Educação)},
+  school    = {Universidade Federal do Pampa, Campus Jaguarão},
+  address   = {Jaguarão},
+  year      = {2023},
+  pagetotal = {120}
+}
+
+% LIVRO COM TÍTULO E SUBTÍTULO: o subtítulo vai em note.
+
+@book{ruiz2008,
+  author    = {Ruiz, João Álvaro},
+  title     = {Metodologia científica},
+  note      = {guia para eficiência nos estudos},
+  edition   = {6},
+  address   = {São Paulo},
+  publisher = {Atlas},
+  year      = {2008}
+}
+
+% TRABALHO EM ANAIS ONLINE, COM ET AL. E EDITORA NÃO IDENTIFICADA.
+% Sem publisher, o estilo imprime [s. n.]. Os coautores após o primeiro são fictícios.
+
+@inproceedings{silva2012,
+  author     = {Silva, V. B. and Souza, A. and Lima, B. and Rocha, C.},
+  title      = {Possibilidades de atividades colaborativas e cooperativas entre bibliotecários e gestores da informação em práticas profissionais de armazenamento, organização, fluxo e recuperação da informação},
+  eventtitle = {Encontro Regional de Estudantes de Biblioteconomia, Documentação, Ciência e Gestão da Informação -- EREBD},
+  number     = {15},
+  eventdate  = {2012},
+  venue      = {Juazeiro do Norte},
+  booktitle  = {Anais [...]},
+  address    = {Juazeiro do Norte, CE},
+  year       = {2012},
+  url        = {http://portaldeperiodicos.eci.ufmg.br/index.php/moci/article/view/2098/1300},
+  urldate    = {2018-07-17}
+}
+
+% LIVRO EM SUPORTE FÍSICO: o suporte vai em type.
+
+@book{simoes2009,
+  author    = {Simões, Carlos},
+  title     = {Curso de direito do serviço social},
+  address   = {São Paulo},
+  publisher = {Cortez},
+  year      = {2009},
+  type      = {1 CD-ROM}
+}
+
+% CAPÍTULO DE LIVRO COM DOIS AUTORES.
+
+@incollection{capitulo2024,
+  author    = {Souza, Maria and Pereira, João},
+  title     = {Métodos de análise em pesquisas educacionais},
+  editor    = {Lima, Ana},
+  booktitle = {Pesquisa e inovação na universidade},
+  address   = {Porto Alegre},
+  publisher = {Editora Acadêmica},
+  year      = {2024},
+  pages     = {45--68}
+}
+
+% MANUAL INSTITUCIONAL CONSULTADO ONLINE, COM AUTORIA DE ENTIDADE.
+
+@book{unipampa2025manual,
+  author    = {{Universidade Federal do Pampa}},
+  title     = {Manual de normalização de trabalhos acadêmicos},
+  edition   = {3},
+  address   = {Bagé},
+  publisher = {Universidade Federal do Pampa},
+  year      = {2025},
+  url       = {https://sites.unipampa.edu.br/sisbi/normalizacao/},
+  urldate   = {2026-07-10}
 }
