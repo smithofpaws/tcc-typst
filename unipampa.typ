@@ -1,6 +1,10 @@
 // Rótulos dos títulos de apêndices e anexos (ver `apendices` e `anexos`)
 #let rotulos-anexos = ([APÊNDICE], [ANEXO])
 
+// Entrelinha do espaço simples, calibrada pelo template LaTeX: 14,4 pt entre
+// linhas na fonte 12 e 12 pt na fonte 10
+#let entrelinha-simples = 0.48em
+
 // Aceita o caminho de um arquivo (PDF ou imagem) ou um conteúdo pronto,
 // como `image("documentos/ficha.pdf")`
 #let arquivo-ou-conteudo(arquivo, ..args) = if type(arquivo) == str {
@@ -79,8 +83,9 @@
 
   show bibliography: it => {
     show regex("et\\s+al\\."): emph
-    // NBR 6023: referências alinhadas somente à margem esquerda
-    set par(justify: false)
+    // NBR 6023: referências alinhadas somente à margem esquerda, em espaço
+    // simples e separadas por uma linha em branco
+    set par(justify: false, leading: entrelinha-simples, spacing: 2.1em, first-line-indent: 0pt)
     // NBR 6023: intervalos com hífen (p. 7-18) e sem ponto após "?" ou "!"
     show regex("\\d–\\d"): r => r.text.replace("–", "-")
     show regex("[?!]\\."): r => r.text.slice(0, -1)
@@ -95,7 +100,7 @@
     let loc = it.note.location()
     let num = numbering(it.note.numbering, ..counter(footnote).at(loc))
     set text(size: 10pt)
-    set par(leading: 0.65em, first-line-indent: 0pt)
+    set par(leading: entrelinha-simples, first-line-indent: 0pt)
     grid(columns: (auto, 1fr), link(loc, super(num)), it.note.body)
   }
 
@@ -134,6 +139,14 @@ show tabelas-e-quadros: set block(
   above: espaco-linha-e-meia, // texto ↔️ título
   below: espaco-simples,      // tabela ↔️ fonte
 )
+
+// Tabelas abertas, como no template LaTeX: fios no topo, abaixo do cabeçalho
+// e na base, sem traços verticais. Quadros continuam fechados.
+show figure.where(kind: table): set table(stroke: (x, y) => if y == 0 { (bottom: 0.5pt) })
+show figure.where(kind: table): it => {
+  show table: t => box(stroke: (top: 1pt, bottom: 1pt), t)
+  it
+}
 
 show figure.where(kind: image): it => {
   block(
@@ -279,7 +292,7 @@ show figure.where(kind: image): it => {
   if dedicatoria != none {
     align(bottom + right)[
       #block(width: 50%, align(left)[
-        #set par(leading: 0.26em, first-line-indent: 0pt)
+        #set par(leading: entrelinha-simples, first-line-indent: 0pt)
         #dedicatoria
       ])
     ]
@@ -290,7 +303,8 @@ show figure.where(kind: image): it => {
   if agradecimento != none {
     align(center)[#text(weight: "bold")[AGRADECIMENTO]]
     v(1cm)
-    set par(first-line-indent: 0pt)
+    // Recuo em todos os parágrafos, inclusive o primeiro
+    set par(first-line-indent: (amount: 1.25cm, all: true))
     agradecimento
     pagebreak()
   }
@@ -299,7 +313,7 @@ show figure.where(kind: image): it => {
   if epigrafe != none {
     align(bottom + right)[
       #block(width: 50%, align(left)[
-        #set par(leading: 0.26em, first-line-indent: 0pt)
+        #set par(leading: entrelinha-simples, first-line-indent: 0pt)
         "#epigrafe"\
         #align(right)[#epigrafe_autor]
       ])
@@ -311,9 +325,9 @@ show figure.where(kind: image): it => {
   if resumo != none {
     align(center)[#text(weight: "bold")[RESUMO]]
     v(1cm)
-    set par(first-line-indent: 0pt, leading: 0.65em)
+    set par(first-line-indent: 0pt)
     resumo
-    v(0.65em)
+    v(1.5em) // uma linha em branco de 1,5 (modelo do manual)
     [*Palavras-Chave:* #palavras_chave.join("; ").]
     pagebreak()
   }
@@ -322,9 +336,9 @@ show figure.where(kind: image): it => {
   if abstract != none {
     align(center)[#text(weight: "bold")[ABSTRACT]]
     v(1cm)
-    set par(first-line-indent: 0pt, leading: 0.65em)
+    set par(first-line-indent: 0pt)
     abstract
-    v(0.65em)
+    v(1.5em) // uma linha em branco de 1,5 (modelo do manual)
     [*Keywords:* #keywords.join("; ").]
     pagebreak()
   }
@@ -483,7 +497,7 @@ show figure.where(kind: image): it => {
       width: 100%,
       {
         set text(size: 10pt)
-        set par(leading: 0.26em, justify: true, first-line-indent: 0pt)
+        set par(leading: entrelinha-simples, justify: true, first-line-indent: 0pt)
         texto
       }
     )
@@ -501,7 +515,7 @@ show figure.where(kind: image): it => {
 #let linha-inferior(rotulo, texto) = {
   set align(left)
   set text(size: 10pt)
-  par(leading: 0.65em, spacing: 0.65em, first-line-indent: 0pt)[#rotulo: #texto.]
+  par(leading: entrelinha-simples, spacing: 0.65em, first-line-indent: 0pt)[#rotulo: #texto.]
 }
 
 // Fonte de figuras, quadros e tabelas. Ex.: #fonte[elaboração própria]

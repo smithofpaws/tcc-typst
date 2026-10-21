@@ -41,10 +41,14 @@
     Dedico este trabalho ...... (a dedicatória é opcional).
   ],
 
+  // Separe os parágrafos com uma linha em branco
   agradecimento: [
-    Ao Prof. Dr. ..... \
-    Aos professores... \
-    A todos os colegas de curso ... \
+    Ao Prof. Dr. .....
+
+    Aos professores...
+
+    A todos os colegas de curso ...
+
     (O agradecimento é opcional)
   ],
 
@@ -126,15 +130,14 @@ Abaixo temos um exemplo de como inserir uma figura no Typst. A inserção de fig
 )
 #fonte[elaboração própria]
 
-Abaixo temos um exemplo de como inserir uma tabela. Como ela está dentro de um bloco `#figure` e foi informada como `kind: table`, a *Lista de Tabelas* também será gerada de forma automática!
+Abaixo temos um exemplo de como inserir uma tabela. Como ela está dentro de um bloco `#figure` e foi informada como `kind: table`, a *Lista de Tabelas* também será gerada de forma automática! As tabelas saem abertas, sem traços verticais, com fios no topo, abaixo do cabeçalho e na base.
 
 #figure(
   table(
     columns: (auto, auto, auto),
-    inset: 10pt,
-    align: horizon,
+    align: (left, right, right),
     table.header(
-      [*Situação do domicílio*], [*Mulheres*], [*Homens*]
+      [Situação do domicílio], [Mulheres], [Homens]
     ),
     [Urbana], [41 115 439], [38 857 492],
     [Rural], [18 479 893], [19 507 477],
@@ -177,11 +180,7 @@ A conclusão ou considerações finais é a parte final do texto, o fechamento d
 
 // As referências são geradas automaticamente baseadas no arquivo referencias.bib
 // A opção de estilo aplica a formatação da ABNT via o arquivo CSL da Unipampa (NBR 6023:2025).
-// O espaçamento entre linhas vale só para as referências, por isso fica entre #[ ].
-#[
-  #set par(leading: 0.4em, first-line-indent: 0pt, spacing: 1.5em)
-  #bibliography("referencias.bib", style: "abnt-unipampa-nbr6023-2025.csl", title: "REFERÊNCIAS")
-]
+#bibliography("referencias.bib", style: "abnt-unipampa-nbr6023-2025.csl", title: "REFERÊNCIAS")
 
 // Elemento opcional. Termos em ordem alfabética.
 #glossario(
